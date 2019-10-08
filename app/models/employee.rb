@@ -6,6 +6,8 @@ class Employee < ApplicationRecord
     ceo: 6, cfo: 7
   }
 
+  has_many :projects, dependent: :destroy
+
   validates_presence_of :name, :last_name
   validate :any_events, on: :create
 

@@ -35,6 +35,7 @@ RSpec.describe EmployeesController, type: :controller do
         expect_status 200
         expect_json_sizes(employees: 1)
         expect_json_types('employees.*', employee_attr_types)
+        expect_json('employees.0', id: employee1.id)
       end
     end
 
