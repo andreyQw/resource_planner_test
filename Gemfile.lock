@@ -89,6 +89,7 @@ GEM
     ffi (1.11.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    holidays (6.6.1)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -244,6 +245,7 @@ DEPENDENCIES
   byebug
   factory_bot_rails
   ffaker
+  holidays (~> 6.4)
   kaminari
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
