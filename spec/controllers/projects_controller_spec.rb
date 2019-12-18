@@ -27,7 +27,7 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     context 'filter' do
-      let!(:employee) { create :employee }
+      let(:employee) { create :employee }
       let!(:project2) { create :project, employee: employee }
 
       let(:params) { {employee_id: employee.id} }
