@@ -21,8 +21,8 @@ RSpec.describe ProjectsController, type: :controller do
     it 'returns http success' do
       subject
       expect_status 200
-      expect_json_sizes(projects: 1)
-      expect_json_types('projects.*', project_attr_types)
+      expect_json_sizes(resources: 1)
+      expect_json_types('resources.*', project_attr_types)
       expect_json('meta', total: 1)
     end
 
@@ -35,8 +35,8 @@ RSpec.describe ProjectsController, type: :controller do
       it 'by positions' do
         subject
         expect_status 200
-        expect_json_sizes(projects: 1)
-        expect_json('projects.0', id: project2.id)
+        expect_json_sizes(resources: 1)
+        expect_json('resources.0', id: project2.id)
       end
     end
 
@@ -47,7 +47,7 @@ RSpec.describe ProjectsController, type: :controller do
       it 'by :desc' do
         subject
         expect_status 200
-        expect(json_response[:projects].map { |e| e[:name] }).to contain_exactly(project2.name, project1.name)
+        expect(json_response[:resources].map { |e| e[:name] }).to contain_exactly(project2.name, project1.name)
       end
     end
   end
@@ -60,7 +60,7 @@ RSpec.describe ProjectsController, type: :controller do
     it 'success' do
       subject
       expect_status 200
-      expect_json('project', params.slice('name', 'color'))
+      expect_json('resource', params.slice('name', 'color'))
     end
   end
 
@@ -71,7 +71,7 @@ RSpec.describe ProjectsController, type: :controller do
     it 'success' do
       subject
       expect_status 200
-      expect_json('project.id', project.id)
+      expect_json('resource.id', project.id)
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe ProjectsController, type: :controller do
     it 'success' do
       subject
       expect_status 200
-      expect_json('project', params)
+      expect_json('resource', params)
     end
   end
 

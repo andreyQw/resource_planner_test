@@ -25,8 +25,8 @@ RSpec.describe EventsController, type: :controller do
       subject
 
       expect_status 200
-      expect_json_sizes(events: 1)
-      expect_json_types('events.*', event_attr_types)
+      expect_json_sizes(resources: 1)
+      expect_json_types('resources.*', event_attr_types)
       expect_json('meta', total: 1)
     end
   end
@@ -49,7 +49,7 @@ RSpec.describe EventsController, type: :controller do
     it 'success' do
       subject
       expect_status 200
-      expect_json('event', params.slice('employee_id', 'project_id'))
+      expect_json('resource', params.slice('employee_id', 'project_id'))
     end
   end
 
@@ -60,7 +60,7 @@ RSpec.describe EventsController, type: :controller do
     it 'success' do
       subject
       expect_status 200
-      expect_json('event.id', event.id)
+      expect_json('resource.id', event.id)
     end
   end
 
@@ -74,7 +74,7 @@ RSpec.describe EventsController, type: :controller do
     it 'success' do
       subject
       expect_status 200
-      expect_json('event', params)
+      expect_json('resource', params)
     end
   end
 
