@@ -24,7 +24,8 @@ ActiveRecord::Schema.define(version: 2019_10_10_043503) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.bigint "project_id", null: false
+    t.boolean "leave_type", default: false, null: false
+    t.bigint "project_id"
     t.bigint "employee_id", null: false
     t.text "note"
     t.integer "hours_per_day"
@@ -46,5 +47,4 @@ ActiveRecord::Schema.define(version: 2019_10_10_043503) do
   end
 
   add_foreign_key "events", "employees"
-  add_foreign_key "events", "projects"
 end
