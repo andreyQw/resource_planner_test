@@ -22,8 +22,8 @@ RSpec.describe EmployeesController, type: :controller do
     it 'returns http success' do
       subject
       expect_status 200
-      expect_json_sizes(employees: 2)
-      expect_json_types('employees.*', employee_attr_types)
+      expect_json_sizes(resources: 2)
+      expect_json_types('resources.*', employee_attr_types)
       expect_json('meta', total: 2)
     end
 
@@ -33,8 +33,9 @@ RSpec.describe EmployeesController, type: :controller do
       it 'by positions' do
         subject
         expect_status 200
-        expect_json_sizes(employees: 1)
-        expect_json_types('employees.*', employee_attr_types)
+        expect_json_sizes(resources: 1)
+        expect_json_types('resources.*', employee_attr_types)
+        expect_json('resources.0', id: employee1.id)
       end
     end
 
@@ -44,7 +45,7 @@ RSpec.describe EmployeesController, type: :controller do
       it 'by :desc' do
         subject
         expect_status 200
-        expect(json_response[:employees].map { |e| e[:name] }).to contain_exactly(employee2.name, employee1.name)
+        expect(json_response[:resources].map { |e| e[:name] }).to contain_exactly(employee2.name, employee1.name)
       end
     end
   end
@@ -56,7 +57,7 @@ RSpec.describe EmployeesController, type: :controller do
     it 'success' do
       subject
       expect_status 200
-      expect_json('employee', params)
+      expect_json('resource', params)
     end
 
     context 'with empty filds' do
@@ -71,20 +72,20 @@ RSpec.describe EmployeesController, type: :controller do
   end
 
   describe 'GET #show' do
-    let!(:employee) { create :employee }
+    let(:employee) { create :employee }
     let(:employee_params) { {id: employee.id} }
     subject { get :show, params: employee_params }
 
     it 'success' do
       subject
       expect_status 200
-      expect_json('employee.id', employee.id)
+      expect_json('resource.id', employee.id)
     end
 
     context 'wrong id' do
       let(:employee_params) { {id: employee.id + 1} }
 
-      it 'success' do
+      it 'errors' do
         subject
         expect_status 404
       end
@@ -101,7 +102,7 @@ RSpec.describe EmployeesController, type: :controller do
     it 'success' do
       subject
       expect_status 200
-      expect_json('employee', params)
+      expect_json('resource', params)
     end
   end
 
