@@ -18,9 +18,9 @@ class Employee < ApplicationRecord
 
   def any_events
     # TODO: implement in future. When events will be present
-    return if events.blank?
+    # return if events.blank?
 
-    errors.add(:base, 'You can not delete the employee, with events')
-    throw(:abort)
+    # errors.add(:base, 'You can not delete the employee, with events')
+    # throw(:abort)
   end
 end

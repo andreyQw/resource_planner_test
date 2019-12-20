@@ -115,14 +115,5 @@ RSpec.describe EmployeesController, type: :controller do
       expect { subject }.to change(Employee, :count).by(-1)
       expect_status 200
     end
-
-    context 'with event' do
-      let!(:event) { create :event, employee: employee }
-
-      it 'success' do
-        expect { subject }.to_not change(Employee, :count)
-        expect_status 200
-      end
-    end
   end
 end
