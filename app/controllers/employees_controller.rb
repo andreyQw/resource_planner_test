@@ -30,7 +30,7 @@ class EmployeesController < ApplicationController
     employee = Employee.find(params[:id])
     employee.destroy
 
-    head :ok
+    render_resource_or_errors employee
   end
 
   private

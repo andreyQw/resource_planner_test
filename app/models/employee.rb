@@ -7,18 +7,20 @@ class Employee < ApplicationRecord
   }
 
   has_many :projects, dependent: :destroy
+  has_many :events, dependent: :destroy
+
+  before_destroy :any_events
 
   validates_presence_of :name, :last_name
-  validate :any_events, on: :destroy
 
   scope :filter_by_position, ->(positions) { where(position: positions) if positions.present? }
   scope :sort_by_name, ->(direction) { order("employees.name #{direction}") if direction.in?(%w[asc desc]) }
 
   def any_events
     # TODO: implement in future. When events will be present
-    return if true
-    # return if events.blank?
+    return if events.blank?
 
-    # errors.add(:events, 'You can not delete the employee, with events')
+    errors.add(:base, 'You can not delete the employee, with events')
+    throw(:abort)
   end
 end

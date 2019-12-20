@@ -24,11 +24,11 @@ ActiveRecord::Schema.define(version: 2019_10_10_043503) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.boolean "leave_type", default: false, null: false
+    t.integer "leave_type", default: 0, null: false
     t.bigint "project_id"
     t.bigint "employee_id", null: false
     t.text "note"
-    t.integer "hours_per_day"
+    t.integer "hours_per_day", default: 8
     t.datetime "date_from"
     t.datetime "date_to"
     t.datetime "created_at", precision: 6, null: false
